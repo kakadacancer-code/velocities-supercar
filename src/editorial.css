@@ -1,220 +1,859 @@
 :root {
-  --paper: #f4f4ee;
-  --ink: #0b0c0d;
-  --line: #303233;
-  --display: 'Space Grotesk', 'Inter', Arial, sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --display: "Space Grotesk", "Inter", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
   --nav-height: 72px;
 }
-.skip-link { position: fixed; z-index: 200; left: 1rem; top: -6rem; background: var(--acid); color: var(--ink); padding: .8rem 1rem; }
-.skip-link:focus { top: 1rem; }
-.site-nav { height: var(--nav-height); background: #0b0c0d; border-bottom: 1px solid #262829; }
-.site-nav__links { margin: 0; gap: clamp(1.25rem, 2.8vw, 3rem); }
-.site-nav__actions { gap: 1rem; }
-.wordmark { gap: .35rem; font-family: var(--display); font-weight: 700; font-style: italic; font-size: 1.5rem; letter-spacing: -.072em; }
-.brand-mark { width: 2.35rem; height: 2.35rem; }
-.nav-link { font-size: .875rem; }
-.nav-link--active:after { bottom: -.55rem; height: 2px; }
-.nav-cta { display: flex; text-transform: none; letter-spacing: 0; font-weight: 600; font-size: .875rem; gap: .6rem; padding: 0 1rem; border: 1px solid #505352; background: transparent; color: var(--paper); border-radius: 4px; }
-.nav-cta:hover,.nav-cta.active { border-color: var(--acid); background: #1b1f12; color: var(--acid); }
-.spotlight { padding-top: var(--nav-height); background: var(--ink); }
-.spotlight__stage { position: relative; isolation: isolate; overflow: hidden; background: #101317; }
-.spotlight__artwork { position: absolute; inset: 0; isolation: isolate; pointer-events: none; }
-.spotlight__art { position: absolute; right: 0; top: 0; width: 90%; height: 100%; object-fit: cover; object-position: 63% 56%; opacity: 0; mix-blend-mode: plus-lighter; transition: opacity 1.05s cubic-bezier(.45,0,.25,1); }
-.spotlight__art[data-active="true"] { opacity: 1; }
-.spotlight__shade { position: absolute; inset: 0; background: linear-gradient(90deg,#0a0c0e 1%,#0b0d10f0 20%,#0b0d109c 37%,#0b0d101a 59%,transparent 80%),linear-gradient(0deg,#0b0c0da1,transparent 24%); }
-.spotlight__layout { position: relative; display: flex; align-items: center; min-height: clamp(435px,36.5vw,600px); padding-block: clamp(2.25rem,3.5vw,4rem); }
-.spotlight__copy { min-width: 0; }
-.spotlight__captions { display: grid; }
-.spotlight__caption, .telemetry__value { grid-area: 1 / 1; opacity: 0; pointer-events: none; transition: opacity .18s ease-out; }
-.spotlight__caption[data-active="true"], .telemetry__value[data-active="true"] { opacity: 1; pointer-events: auto; transition: opacity .48s ease-in-out .18s; }
-.spotlight__caption[aria-hidden="true"], .telemetry__value[aria-hidden="true"] { user-select: none; }
-.telemetry__values { display: inline-grid; font-variant-numeric: tabular-nums; }
-.issue-label,.spotlight__make,.telemetry dt,.spotlight__count,.comparison__model label {
-  font: 500 .75rem/1.35 var(--mono); letter-spacing: .13em; text-transform: uppercase;
+.skip-link {
+  position: fixed;
+  z-index: 200;
+  left: 1rem;
+  top: -6rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.8rem 1rem;
 }
-.issue-label { display: flex; align-items: center; gap: .75rem; margin: 0; color: #bfc1be; }
-.racing-rule { display: inline-block; height: 3px; width: 1.65rem; background: var(--acid); transform: skew(-22deg); }
-.spotlight .issue-label { margin-bottom: clamp(1.35rem,2vw,2.2rem); color: var(--acid); }
-.spotlight__make { color: #d4d5d2; font-size: .87rem; letter-spacing: .22em; margin: 0 0 .45rem; }
-.spotlight h1 { margin: 0; color: var(--paper); font: 700 clamp(4.5rem,7.2vw,8rem)/.89 var(--display); letter-spacing: -.075em; }
-.spotlight h1 em { color: var(--paper); font-style: italic; }
-.spotlight h1 span,.shelf-heading h2 span,.comparison h1 span { color: var(--acid); }
-.spotlight__summary { max-width: 23rem; margin: 1.15rem 0 1.4rem; font-size: 1rem; color: #d0d1cf; line-height: 1.55; }
-.profile-button { display: inline-flex; align-items: center; justify-content: center; padding: .78rem 1.35rem; color: #11140a; background: var(--acid); font-size: .9rem; font-weight: 700; border-radius: 3px; transition: background .2s, transform .2s; }
-.profile-button:hover { background: #e7ff96; transform: translateY(-2px); }
-.telemetry { background: #121415; border-block: 1px solid var(--line); }
-.telemetry__inner,.telemetry__metrics,.telemetry__metric,.spotlight__controls { display: flex; align-items: center; }
-.telemetry__inner { justify-content: space-between; gap: 1rem; min-height: 5.5rem; }
-.telemetry__metrics { margin: 0; }
-.telemetry__metric { gap: .85rem; padding-inline: clamp(1.5rem,3.4vw,4rem); border-right: 1px solid #353837; }
-.telemetry__metric:first-child { padding-left: 0; }
-.telemetry__metric:last-child { border: 0; }
-.telemetry__metric svg { color: var(--acid); }
-.telemetry dt { color: #a7aba9; font-size: .69rem; letter-spacing: .1em; }
-.telemetry dd { font: 600 1.55rem/1.2 var(--display); letter-spacing: -.06em; margin: .15rem 0 0; }
-.telemetry small { font: 400 .82rem var(--mono); color: #c2c5bf; letter-spacing: 0; margin-left: .33rem; }
-.spotlight__controls { gap: .5rem; }
-.spotlight__count { color: #9b9f9d; letter-spacing: .04em; margin-right: .65rem; white-space: nowrap; }
-.spotlight__count b { color: var(--acid); font-weight: 600; }
-.spotlight__controls button { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border: 1px solid #484b49; border-radius: 50%; color: var(--paper); transition: color .2s,border-color .2s,background .2s; }
-.spotlight__controls button:hover { background: #20231c; border-color: var(--acid); color: var(--acid); }
-.home-shelf { padding-block: clamp(2.8rem,4.5vw,5rem); }
-.home-shelf .issue-label,.comparison .issue-label { color: #b9beb6; }
-.shelf-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: .7rem 0 1.7rem; }
-.shelf-heading h2,.comparison h1 { font: 600 clamp(2.35rem,3.7vw,4.4rem)/1.05 var(--display); color: var(--paper); letter-spacing: -.065em; margin: 0; }
-.shelf-link { display: inline-block; color: var(--paper); border-bottom: 1px solid #74796c; padding-bottom: .2rem; font-size: .875rem; font-weight: 500; transition: color .2s,border-color .2s; white-space: nowrap; }
-.shelf-link:hover { color: var(--acid); border-color: var(--acid); }
-.home-card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(1rem,1.8vw,2rem); }
-.car-card__visual { border-radius: 4px; aspect-ratio: 1.8; }
-.car-card__image img { filter: none; object-position: 60% center !important; }
-.car-card__index { background: #101213c9; border: 1px solid #ffffff36; border-radius: 2px; padding: .31rem .52rem; left: .85rem; top: .85rem; font: 500 .67rem var(--mono); color: #f2f3ec; }
-.car-card__body .micro-label { color: #b3b7b1; font: 500 .75rem var(--mono); }
-.car-card__specs span { font: 500 .65rem/1.45 var(--mono); color: #b0b4b0; }
-.home-journal { background: #111314; border-block: 1px solid var(--line); }
-.home-journal .story-card__visual { aspect-ratio: 1.85; border-radius: 3px; }
-.comparison { padding-top: calc(var(--nav-height) + clamp(2.5rem,6vw,6rem)); padding-bottom: 6rem; }
-.comparison h1 { margin: 1rem 0; }
-.comparison__intro { color: #b5b8b5; margin-bottom: 2rem; }
-.comparison__models { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; }
-.comparison__model label { display: block; color: #b5b8b5; margin-bottom: .55rem; }
-.comparison__model select { width: 100%; margin-bottom: .85rem; }
-.comparison__model .image-frame { border-radius: 4px; aspect-ratio: 2.25; }
-.comparison__table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 1.8rem; }
-.comparison__table th,.comparison__table td { text-align: left; font-weight: 400; border-bottom: 1px solid var(--line); padding: .95rem; overflow-wrap: anywhere; vertical-align: top; }
-.comparison__table thead th { color: var(--acid); font-weight: 600; background: #171a16; }
-.comparison__table th:first-child { color: #b7bbb4; width: 23%; }
-.spec-compare { margin-top: var(--group-gap); }
+.skip-link:focus {
+  top: 1rem;
+}
+.site-nav {
+  height: var(--nav-height);
+  background: var(--canvas);
+  border-bottom: 1px solid var(--line);
+}
+.site-nav__links {
+  margin: 0;
+  gap: clamp(1.25rem, 2.8vw, 3rem);
+}
+.site-nav__actions {
+  gap: 1rem;
+}
+.wordmark {
+  gap: 0.35rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1.5rem;
+  letter-spacing: -0.072em;
+}
+.brand-mark {
+  width: 2.35rem;
+  height: 2.35rem;
+}
+.nav-link {
+  font-size: 0.875rem;
+}
+.nav-link--active:after {
+  bottom: -0.55rem;
+  height: 2px;
+}
+.nav-cta {
+  display: flex;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 0.875rem;
+  gap: 0.6rem;
+  padding: 0 1rem;
+  border: 1px solid var(--control-border);
+  background: transparent;
+  color: var(--text);
+  border-radius: 4px;
+}
+.nav-cta:hover,
+.nav-cta.active {
+  border-color: var(--accent);
+  background: var(--accent-surface);
+  color: var(--accent);
+}
+.spotlight {
+  padding-top: var(--nav-height);
+  background: var(--canvas);
+}
+.spotlight__stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--panel);
+}
+.spotlight__artwork {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  pointer-events: none;
+}
+.spotlight__art {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 88%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 63% 56%;
+  opacity: 0;
+  mix-blend-mode: plus-lighter;
+  transition: opacity 1.05s cubic-bezier(0.45, 0, 0.25, 1);
+}
+.spotlight__art[data-active="true"] {
+  opacity: 1;
+}
+.spotlight__shade {
+  --split: 42%;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(104deg,
+    var(--canvas) 5%, var(--accent-surface) var(--split),
+    var(--accent) calc(var(--split) + 1px), var(--accent) calc(var(--split) + 4px),
+    transparent calc(var(--split) + 5px)
+  );
+}
+.spotlight__layout {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(435px, 36.5vw, 600px);
+  padding-block: var(--section-inset);
+}
+.spotlight__copy {
+  min-width: 0;
+  max-width: min(40%, 35rem);
+}
+.spotlight__captions {
+  display: grid;
+}
+.spotlight__caption,
+.telemetry__value {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease-out;
+}
+.spotlight__caption[data-active="true"],
+.telemetry__value[data-active="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.48s ease-in-out 0.18s;
+}
+.spotlight__caption[aria-hidden="true"],
+.telemetry__value[aria-hidden="true"] {
+  user-select: none;
+}
+.telemetry__values {
+  display: inline-grid;
+  font-variant-numeric: tabular-nums;
+}
+.issue-label,
+.spotlight__make,
+.telemetry dt,
+.spotlight__count,
+.comparison__model label {
+  font: 500 0.75rem/1.35 var(--mono);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.issue-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+.racing-rule {
+  display: inline-block;
+  height: 3px;
+  width: 1.65rem;
+  background: var(--accent);
+  transform: skew(-22deg);
+}
+.spotlight .issue-label {
+  margin-bottom: var(--group-gap);
+  color: var(--accent);
+}
+.spotlight__make {
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  letter-spacing: 0.22em;
+  margin: 0 0 0.45rem;
+}
+.spotlight h1 {
+  margin: 0;
+  color: var(--text);
+  font: 700 clamp(4.5rem, 7.2vw, 8rem)/0.89 var(--display);
+  letter-spacing: -0.075em;
+}
+.spotlight h1 em {
+  color: var(--accent);
+  font-style: italic;
+}
+.spotlight h1 span,
+.shelf-heading h2 span,
+.comparison h1 span {
+  color: var(--accent);
+}
+.spotlight__summary {
+  max-width: 23rem;
+  margin: 1.15rem 0 1.4rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+.profile-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.78rem 1.35rem;
+  color: var(--on-accent);
+  background: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 3px;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.profile-button:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+.telemetry {
+  background: var(--panel);
+  border-block: 1px solid var(--line);
+}
+.telemetry__inner,
+.telemetry__metrics,
+.telemetry__metric,
+.spotlight__controls {
+  display: flex;
+  align-items: center;
+}
+.telemetry__inner {
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 5.5rem;
+}
+.telemetry__metrics {
+  margin: 0;
+}
+.telemetry__metric {
+  gap: 0.85rem;
+  padding-inline: clamp(1.5rem, 3.4vw, 4rem);
+  border-right: 1px solid var(--line);
+}
+.telemetry__metric:first-child {
+  padding-left: 0;
+}
+.telemetry__metric:last-child {
+  border: 0;
+}
+.telemetry__metric svg {
+  color: var(--accent);
+}
+.telemetry dt {
+  color: var(--muted);
+  font-size: 0.69rem;
+  letter-spacing: 0.1em;
+}
+.telemetry dd {
+  font: 600 1.55rem/1.2 var(--display);
+  letter-spacing: -0.06em;
+  margin: 0.15rem 0 0;
+}
+.telemetry small {
+  font: 400 0.82rem var(--mono);
+  color: var(--text-secondary);
+  letter-spacing: 0;
+  margin-left: 0.33rem;
+}
+.spotlight__controls {
+  gap: 0.5rem;
+}
+.spotlight__count {
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-right: 0.65rem;
+  white-space: nowrap;
+}
+.spotlight__count b {
+  color: var(--accent);
+  font-weight: 600;
+}
+.spotlight__controls button {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--control-border);
+  border-radius: 50%;
+  color: var(--text);
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+.spotlight__controls button:hover {
+  background: var(--accent-surface);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.home-shelf {
+  padding-block: var(--section-inset);
+}
+.home-shelf .issue-label,
+.comparison .issue-label {
+  color: var(--text-secondary);
+}
+.shelf-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: var(--text-gap) 0 var(--group-gap);
+}
+.shelf-heading h2,
+.comparison h1 {
+  font: 600 clamp(2.35rem, 3.7vw, 4.4rem)/1.05 var(--display);
+  color: var(--text);
+  letter-spacing: -0.065em;
+  margin: 0;
+}
+.shelf-link {
+  display: inline-block;
+  color: var(--text);
+  border-bottom: 1px solid var(--control-border);
+  padding-bottom: 0.2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+  white-space: nowrap;
+}
+.shelf-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.home-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--group-gap);
+}
+.car-card__visual {
+  border-radius: 4px;
+  aspect-ratio: 1.8;
+}
+.car-card__image img {
+  filter: none;
+  object-position: 60% center !important;
+}
+.car-card__index {
+  background: #101923c9;
+  border: 1px solid #ffffff36;
+  border-radius: 2px;
+  padding: 0.31rem 0.52rem;
+  left: 0.85rem;
+  top: 0.85rem;
+  font: 500 0.67rem var(--mono);
+  color: #ffffff;
+}
+.car-card__body .micro-label {
+  color: var(--text-secondary);
+  font: 500 0.75rem var(--mono);
+}
+.car-card__specs span {
+  font: 500 0.65rem/1.45 var(--mono);
+  color: var(--text-secondary);
+}
+.home-journal {
+  background: var(--panel);
+  border-block: 1px solid var(--line);
+}
+.home-journal .story-card__visual {
+  aspect-ratio: 1.85;
+  border-radius: 3px;
+}
+.comparison {
+  padding-top: calc(var(--nav-height) + var(--section-inset));
+  padding-bottom: var(--section-inset);
+}
+.comparison h1 {
+  margin: var(--text-gap) 0;
+}
+.comparison__intro {
+  color: var(--text-secondary);
+  margin-bottom: var(--group-gap);
+}
+.comparison__models {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--group-gap);
+}
+.comparison__model label {
+  display: block;
+  color: var(--text-secondary);
+  margin-bottom: 0.55rem;
+}
+.comparison__model select {
+  width: 100%;
+  margin-bottom: 0.85rem;
+}
+.comparison__model .image-frame {
+  border-radius: 4px;
+  aspect-ratio: 2.25;
+}
+.comparison__table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-top: var(--group-gap);
+}
+.comparison__table th,
+.comparison__table td {
+  text-align: left;
+  font-weight: 400;
+  border-bottom: 1px solid var(--line);
+  padding: 0.95rem;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+.comparison__table thead th {
+  color: var(--accent);
+  font-weight: 600;
+  background: var(--accent-surface);
+}
+.comparison__table th:first-child {
+  color: var(--text-secondary);
+  width: 23%;
+}
+.spec-compare {
+  margin-top: var(--group-gap);
+}
 @media (prefers-reduced-motion: reduce) {
-  .spotlight__art, .spotlight__caption, .telemetry__value { transition: none !important; }
+  .spotlight__art,
+  .spotlight__caption,
+  .telemetry__value {
+    transition: none !important;
+  }
 }
-.filter-results { display: none; }
-@media(min-width:801px) { .menu-button { display: none; } }
-@media(max-width:800px) {
-  :root { --nav-height: 64px; }
-  .site-nav .nav-cta { display: none; }
-  .icon-button, .spotlight__controls button { width: 2.75rem; height: 2.75rem; }
-  .filter-results { display: flex; width: 100%; margin-top: 1rem; font-size: .875rem; }
-  .filter-group .select-control, .collection-search input, .select-control { font-size: 1rem; }
-  .collection-search input { min-width: 0; }
-  .filter-options button { min-height: 2.75rem; font-size: .875rem; }
-  .radio-dot { flex-shrink: 0; }
-  .collection-filters__top { flex-wrap: wrap; }
-  .collection-filters__top button, .filter-clear { min-height: 2.75rem; font-size: .75rem; }
-  .search-panel__form button { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; }
-  .spotlight__art { width: 100%; object-position: 65% center; }
-  .spotlight__layout { min-height: 425px; }
-  .telemetry__metric { gap: .55rem; padding-inline: 1.15rem; }
-  .home-card-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 2rem 1rem; }
-  .telemetry__inner { flex-wrap: wrap; padding-block: .75rem; }
-  .car-card__specs { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .car-card__specs > div:last-child { grid-column: 1/-1; }
+.filter-results {
+  display: none;
 }
-@media(max-width:600px) {
+@media (min-width: 601px) and (max-width: 1100px) {
+  .spotlight__shade {
+    --split: 50%;
+  }
+}
+@media (min-width: 801px) {
+  .menu-button {
+    display: none;
+  }
+}
+@media (max-width: 800px) {
   :root {
-    --phone-gutter: clamp(1rem, 4.5vw, 1.5rem);
+    --nav-height: 64px;
+  }
+  .site-nav .nav-cta {
+    display: none;
+  }
+  .icon-button,
+  .spotlight__controls button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .filter-results {
+    display: flex;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+  .filter-group .select-control,
+  .collection-search input,
+  .select-control {
+    font-size: 1rem;
+  }
+  .collection-search input {
+    min-width: 0;
+  }
+  .filter-options button {
+    min-height: 2.75rem;
+    font-size: 0.875rem;
+  }
+  .radio-dot {
+    flex-shrink: 0;
+  }
+  .collection-filters__top {
+    flex-wrap: wrap;
+  }
+  .collection-filters__top button,
+  .filter-clear {
+    min-height: 2.75rem;
+    font-size: 0.75rem;
+  }
+  .search-panel__form button {
+    display: grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+  .spotlight h1 {
+    font-size: clamp(2.75rem, 7.4vw, 4rem);
+  }
+  .spotlight__art {
+    width: 100%;
+    object-position: 65% center;
+  }
+  .spotlight__layout {
+    min-height: 425px;
+  }
+  .telemetry__metric {
+    gap: 0.55rem;
+    padding-inline: 1.15rem;
+  }
+  .home-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .telemetry__inner {
+    flex-wrap: wrap;
+    padding-block: 0.75rem;
+  }
+  .car-card__specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .car-card__specs > div:last-child {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 600px) {
+  :root {
     --phone-title: clamp(2rem, 1.15rem + 5.2vw, 3.4rem);
     --phone-heading: clamp(1.75rem, 1.12rem + 3.6vw, 2.65rem);
   }
-  .site-nav__inner { gap: .5rem; }
-  .site-nav__actions { gap: .25rem; }
-  .wordmark { font-size: 1.25rem; }
-  .brand-mark { width: 1.85rem; height: 1.85rem; }
+  .site-nav__inner {
+    gap: 0.5rem;
+  }
+  .site-nav__actions {
+    gap: 0.25rem;
+  }
+  .wordmark {
+    font-size: 1.25rem;
+  }
+  .brand-mark {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
   .detail-hero__back {
     position: relative;
     align-self: start;
     min-height: 2rem;
-    padding: .375rem .625rem;
-    gap: .375rem;
-    font-size: .8125rem;
+    padding: 0.375rem 0.625rem;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
     line-height: 1.25;
   }
-  .detail-hero__back svg { width: .875rem; height: .875rem; }
-  /* Extend the tap area above and below the compact button. */
-  .detail-hero__back::after { content: ''; position: absolute; inset: -.375rem 0; }
-  .search-overlay { padding-top: max(1rem, env(safe-area-inset-top)); }
-  .search-panel { padding: 1rem; }
-  .search-panel__form { margin-block: .75rem; padding-block: .25rem; }
-  .search-panel__results > button { min-height: 2.75rem; font-size: 1rem; }
-  .spotlight__stage { display: flex; flex-direction: column; background: #111315; }
-  .spotlight__layout { min-height: 0; padding-block: 1.75rem 1.25rem; }
-  .spotlight__artwork { position: relative; order: 1; aspect-ratio: 2.1; }
-  .spotlight__art { object-position: 62% 60%; }
-  .spotlight__artwork::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(#111315, transparent 24%);
+  .detail-hero__back svg {
+    width: 0.875rem;
+    height: 0.875rem;
   }
-  .spotlight__shade { display: none; }
-  .spotlight .issue-label { margin-bottom: 1rem; }
-  .spotlight h1 { font-size: clamp(2.4rem, 1.2rem + 6.6vw, 4rem); line-height: 1; }
-  .spotlight h1 br { display: none; }
-  .spotlight h1 em::before { content: ' '; }
-  .spotlight__make { font-size: .75rem; }
-  .spotlight__summary { max-width: 32rem; font-size: 1rem; margin-top: .75rem; }
-  .telemetry__inner { min-height: 0; display: grid; grid-template-columns: minmax(0,1fr); gap: .75rem; padding-block: 1rem .75rem; }
-  .telemetry__metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
-  .telemetry__metric { align-items: flex-start; padding-inline: .5rem; }
-  .telemetry__metric:last-child { padding-right: 0; }
-  .telemetry__metric svg { display: none; }
-  .telemetry dt { font-size: .75rem; letter-spacing: .02em; }
-  .telemetry dd { font-size: 1.25rem; }
-  .telemetry small { font-size: .75rem; }
-  .spotlight__controls { justify-content: flex-end; gap: .5rem; border-top: 1px solid var(--line); padding-top: .65rem; }
-  .spotlight__count { margin-right: auto; }
-  .home-card-grid { grid-template-columns: minmax(0,1fr); gap: 2rem; }
-  .shelf-heading { align-items: flex-start; flex-direction: column; gap: .5rem; }
-  .shelf-heading h2 { font-size: var(--phone-heading); }
-  .comparison h1 { font-size: var(--phone-title); }
-  .car-card__specs { grid-template-columns: repeat(3,minmax(0,1fr)); }
-  .car-card__specs > div:last-child { grid-column: auto; }
-  .car-card__specs span, .car-card__index, .filter-group > :is(p,label),
-  .story-card__meta, .story-card__read, .spec-note, .back-link,
-  .collection-filters__top .micro-label, .brands-directory__bottom .micro-label { font-size: .75rem; }
-  .story-card__meta { flex-wrap: wrap; gap: .25rem 1rem; }
-  .page-hero__layout > *, .performance__content > * { min-width: 0; max-width: 100%; }
-  :is(h1,h2,h3), .car-card__specs, .telemetry__metrics { overflow-wrap: anywhere; }
-  .story-card > p, .about-value p, .brand-detail-body > div:last-child p:not(.lead-text),
-  .credits-page > p { font-size: 1rem; }
-  .performance__metric > div { flex-wrap: wrap; gap: .3rem; }
-  .footer-nav { gap: 0; }
-  .footer-nav > a, .back-link { min-height: 2.75rem; }
-  .button-primary { white-space: normal; text-align: center; }
-  .collection-toolbar__controls { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: .6rem; }
-  .collection-toolbar__controls .collection-search { grid-column: 1/-1; }
-  .collection-search:focus-within { border-color: var(--acid); }
-  .collection-search button { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; margin-right: -.875rem; }
-  .collection-toolbar__controls > select { min-width: 0; width: 100%; }
-  .filter-toggle { font-size: .875rem; padding-inline: .75rem; }
-  .comparison__models { grid-template-columns: minmax(0,1fr); }
-  .comparison__model { display: grid; grid-template-columns: minmax(0,1fr) 3.5rem; align-items: center; gap: .35rem .75rem; }
-  .comparison__model label, .comparison__model select { margin: 0; }
-  .comparison__model select { grid-column: 1/-1; grid-row: 2; }
-  .comparison__model > a { grid-column: 2; grid-row: 1; }
-  .comparison__model .image-frame { aspect-ratio: 1.25; }
-  .comparison__table th, .comparison__table td { padding: .75rem .35rem; font-size: .875rem; }
-  .comparison__table th:first-child { width: 27%; }
-  .comparison__table .car-price__figure strong { font-size: 1rem; }
-  .lightbox > img { flex: 1; min-height: 0; height: 0; }
-  .lightbox button { min-width: 2.75rem; min-height: 2.75rem; }
-  .lightbox__bottom { gap: 1.5rem; padding-bottom: max(1rem,env(safe-area-inset-bottom)); }
+  /* Extend the tap area above and below the compact button. */
+  .detail-hero__back::after {
+    content: "";
+    position: absolute;
+    inset: -0.375rem 0;
+  }
+  .search-overlay {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  .search-panel {
+    padding: 1rem;
+  }
+  .search-panel__form {
+    margin-block: 0.75rem;
+    padding-block: 0.25rem;
+  }
+  .search-panel__results > button {
+    min-height: 2.75rem;
+    font-size: 1rem;
+  }
+  .spotlight__copy {
+    max-width: none;
+  }
+  .spotlight__stage {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(115deg, var(--canvas), var(--accent-surface));
+  }
+  .spotlight__layout {
+    min-height: 0;
+  }
+  .spotlight__artwork {
+    position: relative;
+    order: 1;
+    aspect-ratio: 2.1;
+  }
+  .spotlight__art {
+    object-position: 62% 60%;
+  }
+  .spotlight__shade {
+    display: none;
+  }
+  .spotlight h1 {
+    font-size: clamp(2.4rem, 1.2rem + 6.6vw, 4rem);
+    line-height: 1;
+  }
+  .spotlight h1 br {
+    display: none;
+  }
+  .spotlight h1 em::before {
+    content: " ";
+  }
+  .spotlight__make {
+    font-size: 0.75rem;
+  }
+  .spotlight__summary {
+    max-width: 32rem;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+  }
+  .telemetry__inner {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-block: 1rem 0.75rem;
+  }
+  .telemetry__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+  .telemetry__metric {
+    align-items: flex-start;
+    padding-inline: 0.5rem;
+  }
+  .telemetry__metric:last-child {
+    padding-right: 0;
+  }
+  .telemetry__metric svg {
+    display: none;
+  }
+  .telemetry dt {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .telemetry dd {
+    font-size: 1.25rem;
+  }
+  .telemetry small {
+    font-size: 0.75rem;
+  }
+  .spotlight__controls {
+    justify-content: flex-end;
+    gap: 0.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 0.65rem;
+  }
+  .spotlight__count {
+    margin-right: auto;
+  }
+  .home-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shelf-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .shelf-heading h2 {
+    font-size: var(--phone-heading);
+  }
+  .comparison h1 {
+    font-size: var(--phone-title);
+  }
+  .car-card__specs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .car-card__specs > div:last-child {
+    grid-column: auto;
+  }
+  .car-card__specs span,
+  .car-card__index,
+  .filter-group > :is(p, label),
+  .story-card__meta,
+  .story-card__read,
+  .spec-note,
+  .back-link,
+  .collection-filters__top .micro-label,
+  .brands-directory__bottom .micro-label {
+    font-size: 0.75rem;
+  }
+  .story-card__meta {
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+  }
+  .page-hero__layout > *,
+  .performance__content > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+  :is(h1, h2, h3),
+  .car-card__specs,
+  .telemetry__metrics {
+    overflow-wrap: anywhere;
+  }
+  .story-card > p,
+  .about-value p,
+  .brand-detail-body > div:last-child p:not(.lead-text),
+  .credits-page > p {
+    font-size: 1rem;
+  }
+  .performance__metric > div {
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .footer-nav {
+    gap: 0;
+  }
+  .footer-nav > a,
+  .back-link {
+    min-height: 2.75rem;
+  }
+  .button-primary {
+    white-space: normal;
+    text-align: center;
+  }
+  .collection-toolbar__controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.6rem;
+  }
+  .collection-toolbar__controls .collection-search {
+    grid-column: 1/-1;
+  }
+  .collection-search:focus-within {
+    border-color: var(--accent);
+  }
+  .collection-search button {
+    display: grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    margin-right: -0.875rem;
+  }
+  .collection-toolbar__controls > select {
+    min-width: 0;
+    width: 100%;
+  }
+  .filter-toggle {
+    font-size: 0.875rem;
+    padding-inline: 0.75rem;
+  }
+  .comparison__models {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .comparison__model {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 3.5rem;
+    align-items: center;
+    gap: 0.35rem 0.75rem;
+  }
+  .comparison__model label,
+  .comparison__model select {
+    margin: 0;
+  }
+  .comparison__model select {
+    grid-column: 1/-1;
+    grid-row: 2;
+  }
+  .comparison__model > a {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .comparison__model .image-frame {
+    aspect-ratio: 1.25;
+  }
+  .comparison__table th,
+  .comparison__table td {
+    padding: 0.75rem 0.35rem;
+    font-size: 0.875rem;
+  }
+  .comparison__table th:first-child {
+    width: 27%;
+  }
+  .comparison__table .car-price__figure strong {
+    font-size: 1rem;
+  }
+  .lightbox > img {
+    flex: 1;
+    min-height: 0;
+    height: 0;
+  }
+  .lightbox button {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+  .lightbox__bottom {
+    gap: 1.5rem;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
 }
 
-.performance .issue-label { margin-bottom: 1.25rem; }
-@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-.collection-grid { position: relative; }
-.search-overlay { overflow-y: auto; }
+.performance .issue-label {
+  margin-bottom: var(--text-gap);
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+.collection-grid {
+  position: relative;
+}
+.search-overlay {
+  overflow-y: auto;
+}
 
-.car-price__figure { display: flex; align-items: baseline; flex-wrap: wrap; gap: .2rem .7rem; }
-.car-price__figure strong { font: 600 1.12rem/1.3 var(--display); color: var(--paper); font-variant-numeric: tabular-nums; }
-.car-price__figure span { font: 400 .8rem/1.5 var(--mono); color: #b8bcb7; }
-.spotlight .car-price { margin-bottom: 1.2rem; }
-.spotlight .car-price__figure strong { color: var(--acid); }
-.spotlight__summary { margin-bottom: .65rem; }
-.car-card__body h3 { margin-bottom: .35rem; }
-.car-card .car-price { margin-bottom: 1rem; }
-.detail-specs .car-price { padding-block: var(--text-gap); border-bottom: 1px solid var(--line); }
-.car-price__source { margin: .45rem 0 0; color: #b8bcb7; line-height: 1.6; }
-.car-price__source a { color: var(--paper); text-decoration: underline; text-underline-offset: .2em; }
-.comparison__table .car-price__figure { display: grid; }
+.car-price__figure {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.7rem;
+}
+.car-price__figure strong {
+  font: 600 1.12rem/1.3 var(--display);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.car-price__figure span {
+  font: 400 0.8rem/1.5 var(--mono);
+  color: var(--text-secondary);
+}
+.spotlight .car-price {
+  margin-bottom: 1.2rem;
+}
+.spotlight .car-price__figure strong {
+  color: var(--accent);
+}
+.spotlight__summary {
+  margin-bottom: 0.65rem;
+}
+.car-card__body h3 {
+  margin-bottom: 0.35rem;
+}
+.car-card .car-price {
+  margin-bottom: 1rem;
+}
+.detail-specs .car-price {
+  padding-block: var(--text-gap);
+  border-bottom: 1px solid var(--line);
+}
+.car-price__source {
+  margin: 0.45rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.car-price__source a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.comparison__table .car-price__figure {
+  display: grid;
+}

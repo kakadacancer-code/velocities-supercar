@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#08090B', panel: '#111317', card: '#17191E',
-        bone: '#F5F5F3', muted: '#97999F', acid: '#D4FF3F',
+        ink: 'var(--text)', panel: 'var(--panel)', card: 'var(--card)',
+        bone: 'var(--canvas)', muted: 'var(--muted)', accent: 'var(--accent)',
       },
       fontFamily: {
         display: ['Space Grotesk', 'sans-serif'],
